@@ -2,6 +2,7 @@
 
 require 'selenium-webdriver'
 require 'headless'
+require 'dotenv/load'
 
 @headless = Headless.new
 @headless.start
