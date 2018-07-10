@@ -48,7 +48,7 @@ button = @driver.find_element(:id, 'signInSubmit')
 button.click
 wait
 
-button = @driver.find_element(:xpath, ".//a[contains(@href, #{ENV['AMAZON_DELIVERY_ID']})]")
+button = @driver.find_element(:xpath, ".//a[contains(@href, #{ENV['AMAZON_ADDRESS_ID']})]")
 button.click
 wait
 
