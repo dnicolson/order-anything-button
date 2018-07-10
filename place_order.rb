@@ -6,7 +6,7 @@ require 'dotenv/load'
 
 @headless = Headless.new
 @headless.start
-@driver = Selenium::WebDriver.for :chrome
+@driver = Selenium::WebDriver.for :firefox
 wait = Selenium::WebDriver::Wait.new(timeout: 10)
 
 # Go to the Landing Page
