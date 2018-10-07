@@ -48,31 +48,34 @@ button = @driver.find_element(:id, 'signInSubmit')
 button.click
 wait
 
-button = @driver.find_element(:xpath, ".//a[contains(@href, #{ENV['AMAZON_ADDRESS_ID']})]")
-button.click
-wait
+# Check for delivery addresses or default to a preferred address
+begin
+  button = @driver.find_element(:xpath, ".//a[contains(@href, #{ENV['AMAZON_ADDRESS_ID']})]")
+  button.click
+  wait
 
-# Check out
-button = @driver.find_element(:xpath, ".//input[@value='Continue']")
-button.click
-wait
+  # Check out
+  button = @driver.find_element(:xpath, ".//input[@value='Continue']")
+  button.click
+  wait
 
-sleep(3)
+  sleep(3)
 
-button = @driver.find_element(:xpath, ".//input[@value='Continue']")
-button.click
-wait
+  button = @driver.find_element(:xpath, ".//input[@value='Continue']")
+  button.click
+  wait
 
-sleep(3)
+  sleep(3)
 
-button = @driver.find_element(:xpath, ".//input[@value='Continue']")
-button.click
-wait
-
-button = wait.until { @driver.find_element(:name, 'placeYourOrder1') }
-button.click
-puts 'Checking out...'
-puts @driver.title.to_s
+  button = @driver.find_element(:xpath, ".//input[@value='Continue']")
+  button.click
+  wait
+rescue
+  button = wait.until { @driver.find_element(:name, 'placeYourOrder1') }
+  button.click
+  puts 'Checking out...'
+  puts @driver.title.to_s
+end
 
 puts 'Done! Item en route.'
 
