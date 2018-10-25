@@ -10,7 +10,6 @@ require 'dotenv/load'
 wait = Selenium::WebDriver::Wait.new(timeout: 10)
 
 # Go to the Landing Page
-puts 'Logging in...'
 @driver.get ENV['AMAZON_PRODUCT_LINK']
 wait
 
@@ -36,9 +35,9 @@ email = @driver.find_element(:xpath, ".//*[@id='ap_email']")
 email.send_keys(ENV['AMAZON_EMAIL'])
 wait
 
-button = @driver.find_element(:id, 'continue')
-button.click
-wait
+# button = @driver.find_element(:id, 'continue')
+# button.click
+# wait
 
 password = @driver.find_element(:name, 'password')
 password.send_keys(ENV['AMAZON_PASSWORD'])
@@ -73,11 +72,9 @@ begin
 rescue
   button = wait.until { @driver.find_element(:name, 'placeYourOrder1') }
   button.click
-  puts 'Checking out...'
-  puts @driver.title.to_s
 end
 
-puts 'Done! Item en route.'
+puts 'Done! Order has been placed.'
 
 @driver.quit
 @headless.destroy
